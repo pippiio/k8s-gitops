@@ -35,7 +35,8 @@ module "k8s-gitops" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | flux | n/a | <pre>object({<br/>    version = string<br/>  })</pre> | n/a | yes |
-| github\_secret | GitHub app secret | `string` | n/a | yes |
+| github | n/a | <pre>object({<br/>    app_id              = string<br/>    app_installation_id = string<br/>  })</pre> | n/a | yes |
+| github\_app\_private\_key | GitHub app private key | `string` | n/a | yes |
 
 
 
@@ -45,6 +46,7 @@ module "k8s-gitops" {
 |------|------|
 | [helm_release.flux2](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_namespace_v1.flux_system](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace_v1) | resource |
+| [kubernetes_secret_v1.githubapp-secret-flux](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret_v1) | resource |
 
 
 
