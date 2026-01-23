@@ -3,7 +3,11 @@ module "debug" {
   flux = {
     version    = "2.12.4"
   }
-  github_secret = "hej"
+  github_app_private_key = "adeo-config.yaml"
+  github = {
+    app_id = "123"
+    app_installation_id = "456"
+  }
 }
 
 provider "kubernetes" {

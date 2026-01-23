@@ -4,9 +4,16 @@ variable "flux" {
   })
 }
 
-variable "github_secret" {
-  description = "GitHub app secret"
-  type = string
-  sensitive = true
-  nullable = false
+variable "github_app_private_key" {
+  description = "GitHub app private key"
+  type        = string
+  sensitive   = true
+  nullable    = false
+}
+
+variable "github" {
+  type = object({
+    app_id              = string
+    app_installation_id = string
+  })
 }

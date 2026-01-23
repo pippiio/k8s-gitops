@@ -21,3 +21,18 @@ resource "helm_release" "flux2" {
 
   depends_on = [kubernetes_namespace_v1.flux_system]
 }
+
+resource "kubernetes_secret_v1" "githubapp-secret-flux" {
+  metadata {
+    name      = "githubapp-secret"
+    namespace = "flux-system"
+  }
+
+  data = {
+    githubAppID             = var.github.app_id
+    githubAppInstallationID = var.github.app_installation_id
+    githubAppPrivateKey     = file("${path.module}/${var.github_app_private_key}")
+  }
+
+  type = "Opaque"
+}
