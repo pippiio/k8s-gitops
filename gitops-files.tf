@@ -7,7 +7,6 @@ resource "github_repository_file" "root_kustomization" {
   overwrite_on_create = true
 
   content = file("${path.module}/templates/top-level/kustomization.yaml.tftpl")
-  ### Lav evt om til temnplatefil så der kan være placeholders i manifestet
 }
 
 # Create ArgoCD namespace
@@ -29,7 +28,6 @@ resource "github_repository_file" "argocd_kustomization" {
     {
       version = var.argocd.version
   })
-  ### Skal der evt fyldes noget ind i templatefilen?
 
   depends_on = [
     kubernetes_namespace_v1.argocd

@@ -5,7 +5,7 @@ resource "kubernetes_namespace_v1" "flux_system" {
   }
 }
 
-# Create the GitRepository resource for Flux
+# Bootstrap FluxCD in the cluster using the Git repository as the source of truth
 resource "flux_bootstrap_git" "this" {
   depends_on = [
     kubernetes_namespace_v1.flux_system

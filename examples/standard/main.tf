@@ -19,7 +19,6 @@ terraform {
   }
 }
 
-
 provider "flux" {
   kubernetes = {
     config_path = "~/.kube/config"
@@ -53,10 +52,8 @@ provider "kubernetes" {
 #   client_key             = module.cluster.kubeconfig.client_key
 # }
 
-
 module "flux" {
-  source = "../../"
-  # source = "git::https://github.com/pippiio/k8s-gitops.git?ref=main"
+  source = "git::https://github.com/pippiio/k8s-gitops.git?ref=main"
 
   git = {
     owner      = var.owner
