@@ -1,3 +1,8 @@
+# Create repository url as a local
+locals {
+  repository_url = "https://github.com/${var.git.owner}/${var.git.repository}.git"
+}
+
 # Create the root/top-level kustomization.yaml in the GitOps repository
 resource "github_repository_file" "root_kustomization" {
   repository          = var.git.repository
@@ -9,12 +14,6 @@ resource "github_repository_file" "root_kustomization" {
   content = file("${path.module}/templates/top-level/kustomization.yaml.tftpl")
 }
 
-# Create ArgoCD namespace
-resource "kubernetes_namespace_v1" "argocd" {
-  metadata {
-    name = var.argocd.k8s_namespace
-  }
-}
 
 # Create the ArgoCD Kustomize configuration in the GitOps repository
 resource "github_repository_file" "argocd_kustomization" {
@@ -58,10 +57,6 @@ resource "github_repository_file" "flux_argocd_kustomization" {
   ]
 }
 
-# Create repository url as a local
-locals {
-  repository_url = "https://github.com/${var.git.owner}/${var.git.repository}.git"
-}
 
 # Create the Flux Kustomization resource for installing argocd app-of-platform
 resource "github_repository_file" "app_of_platform" {

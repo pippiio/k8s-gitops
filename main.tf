@@ -5,6 +5,13 @@ resource "kubernetes_namespace_v1" "flux_system" {
   }
 }
 
+# Create ArgoCD namespace
+resource "kubernetes_namespace_v1" "argocd" {
+  metadata {
+    name = var.argocd.k8s_namespace
+  }
+}
+
 # Bootstrap FluxCD in the cluster using the Git repository as the source of truth
 resource "flux_bootstrap_git" "this" {
   depends_on = [
