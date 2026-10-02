@@ -23,8 +23,8 @@ EOF
     owner      = string
     repository = string
     reference  = optional(string, "main")
-    username   = string
-    password   = string
+    username   = optional(string)
+    password   = optional(string)
   })
 
   sensitive = true
@@ -65,6 +65,10 @@ EOF
     repo_path               = optional(string, "flux-system")
     reconciliation_interval = optional(string, "1m")
     timeout                 = optional(string, "5m")
+    githubAppID             = optional(string)
+    githubAppInstallationID = optional(string)
+    githubAppPrivateKey     = optional(string)
+
   })
 
   nullable = false
